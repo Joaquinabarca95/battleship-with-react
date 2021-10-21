@@ -33,6 +33,7 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: azure;
 }
 
 .gameBoard {
@@ -104,4 +105,10 @@ code {
 .playerBoard .missed, .computerBoard .missed {
   background-color: rgb(51, 68, 82);
   color: white;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: none;
+  opacity: 0.5;
 }

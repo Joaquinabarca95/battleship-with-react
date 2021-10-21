@@ -36,9 +36,9 @@ const Game = () => {
   const [playerBoardSchema, setPlayerBoardSchema] = useState(playerBoardSchema1)
   const [computerBoardSchema, setComputerBoardSchema] = useState(computerBoardSchema1)
   const [clickedCell, setClickedCell] = useState("");
-  const [activePlayer, setActivePlayer] = useState(1);
+  const [activePlayer, setActivePlayer] = useState(false); // 0 yo, 1 pc
 
-  const checkIfShip = (cellValue, toggleSetMissed, apellido, position) => {  
+  const checkIfShip = (cellValue, toggleSetMissed, apellido, position) => {
     if (cellValue === 0){
       if (apellido === "player"){
         playerBoardSchema1[position[0]][position[2]] = 3
@@ -67,29 +67,28 @@ const Game = () => {
     }
   } 
 
-  const toggleClickedCell = (position, cellValue, toggleSetMissed, apellido, toggleSetContador) => {
+  const toggleClickedCell = (position, cellValue, toggleSetMissed, apellido,toggleSetContador, toggleActivePlayer, activePlayer) => {
     setClickedCell(position);
     console.log(position, cellValue);
-    checkIfShip(cellValue, toggleSetMissed, apellido, position)   
+    checkIfShip(cellValue, toggleSetMissed, apellido, position)
     toggleSetContador()
+    toggleActivePlayer(activePlayer)
   };
 
 
-
-
-
-  useEffect(() => {
-    if (activePlayer === 0) {
-      setActivePlayer(1);
-    }
-  }, [activePlayer]);
+  const toggleActivePlayer = (activePlayer) => {
+    setActivePlayer(!activePlayer)
+    console.log(activePlayer, "este juega");
+  }
 
   return (
     <div>
       <div className="container">
         <h1>Battleship</h1>
         <div className="board">
-          <PlayerBoard
+          <PlayerBoard 
+          toggleActivePlayer={toggleActivePlayer}
+          activePlayer={activePlayer}
             toggleClickedCell={toggleClickedCell}
             playerBoardSchema={playerBoardSchema}
             computerBoardSchema={computerBoardSchema}

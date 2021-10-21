@@ -5,43 +5,30 @@ const Cells = (props) => {
     const valorCelda = (props.cellValue)
     const apellido = props.apellido
     const [missed, setMissed] = useState(false)
-    const [fired, setFired] = useState(false)
+    const colorHit = props.colorHit
     const toggleSetMissed = () => {
-        console.log("togglesetmissed");
         if (valorCelda === 0){
-            setMissed(true)        
-            console.log("missed");
+            setMissed(true)
         } else if (valorCelda !== 0){
             setMissed(false)
-            console.log("fired");
-        }
-    }
-    const asignarClase = () => {
-        setFired(true)
-        console.log("holi");
-        if (missed === true){
-            let missedCell = "missed"
-            console.log("holi missed");
-            return missedCell
-        } else if (missed === false){
-            let colorHit = props.colorHit
-            console.log("holi hit");
-            return colorHit
         }
     }
 
-    const [contador, setContador] = useState(0)
-    const toggleSetContador = () => {
-        console.log(contador , "contadoroor");
-        setContador(1)
-    }
 
-    
+
+const [contador, setContador] = useState(0)
+const toggleSetContador = ()=>{
+    setContador(contador+1)
+    console.log("Se esta ejecutando el contador correctamente")
+}
+
+const activePlayer = props.activePlayer
+
 
     return (
-        <div className={contador > 0 ? (asignarClase() + "cell ") : "cell"} 
-        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido, asignarClase, toggleSetContador)}>
-            {missed === true ? "X" : props.index}
+        <div className={contador===0 ? "cell " : (missed ? "cell missed" : "cell "+ colorHit)} 
+        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido,toggleSetContador, (activePlayer)=> props.toggleActivePlayer(activePlayer))}>
+            {missed === true ? "X" : ""}
         </div>
     )
 }
