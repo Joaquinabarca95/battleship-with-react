@@ -36,7 +36,8 @@ const Game = () => {
   const [playerBoardSchema, setPlayerBoardSchema] = useState(playerBoardSchema1)
   const [computerBoardSchema, setComputerBoardSchema] = useState(computerBoardSchema1)
   const [clickedCell, setClickedCell] = useState("");
-  const [activePlayer, setActivePlayer] = useState(false); // 0 yo, 1 pc
+  const [activePlayer, setActivePlayer] = useState(true); // 0 yo, 1 pc
+  const [missedPc, setMissedPc] = useState(false)
 
   const checkIfShip = (cellValue, toggleSetMissed, apellido, position) => {
     if (cellValue === 0){
@@ -75,10 +76,49 @@ const Game = () => {
     toggleActivePlayer(activePlayer)
   };
 
+  const pcTurn = () => {
+    let randomCol = Math.floor(Math.random() * 9)
+    let randomRow = Math.floor(Math.random() * 9)
+    let position = randomRow.toString() + "," + randomCol.toString()
+    const newPlayerBoardSchema= [...playerBoardSchema]
+    let cellValue = newPlayerBoardSchema[randomRow][randomCol]
 
-  const toggleActivePlayer = (activePlayer) => {   
-    setActivePlayer(!activePlayer)
+    if (cellValue===0){
+      newPlayerBoardSchema[randomRow][randomCol]= 3
+      document.querySelectorAll("#cell")[newPlayerBoardSchema[randomRow][randomCol]].classList.add("missed")
+      setPlayerBoardSchema(newPlayerBoardSchema)
+    }
+    else if(cellValue===1){
+      newPlayerBoardSchema[randomRow][randomCol]= 2
+      document.querySelectorAll("#cell")[newPlayerBoardSchema[randomRow][randomCol]].classList.add("hitPlayer")
+      setPlayerBoardSchema(newPlayerBoardSchema)
+    }
+    
+    console.log(playerBoardSchema)
+    console.log(position, cellValue, "position y cellvalue PC");
+    console.log("hola");
+    toggleSetContador()
+    
+    //MODIFICAR TABLEROOOO
   }
+
+  const [contador, setContador] = useState(0)
+  const toggleSetContador = ()=>{
+    setContador(contador+1)
+    console.log("Se esta ejecutando el contador correctamente")
+}
+
+  useEffect(() => {
+      pcTurn()
+      toggleActivePlayer(activePlayer)
+
+  }, [computerBoardSchema])
+  
+  const toggleActivePlayer = (activePlayer) => { //OK
+    setActivePlayer(!activePlayer)
+    console.log(activePlayer, "este juega");
+  }
+ 
 
   return (
     <div>
