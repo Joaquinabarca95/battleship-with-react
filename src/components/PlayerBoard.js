@@ -3,15 +3,15 @@ import Cells from './Cells'
 
 const PlayerBoard = (props) => {
 
-    const primerMapeo = props.playerBoardSchema.map((array, indexFila,) => {
+    const playerBoard = props.playerBoardSchema.map((array, indexFila,) => {
         return array.map((cell, indexCell) => {
-            return <Cells key={indexFila.toString() + indexCell.toString()} index={indexFila.toString() + indexCell.toString()} cellValue={cell} toggleClickedCell={props.toggleClickedCell}/>
+            return <Cells key={indexFila.toString() + indexCell.toString()} index={indexFila.toString() + "," + indexCell.toString()} cellValue={cell} toggleClickedCell={props.toggleClickedCell} apellido="player" colorHit={"hitPlayer"} />
         })
     })
 
-    const segundoMapeo = props.computerBoardSchema.map((array, indexFila,) => {
+    const computerBoard = props.computerBoardSchema.map((array, indexFila,) => {
         return array.map((cell, indexCell) => {
-            return <Cells key={indexFila.toString() + indexCell.toString()} index={indexFila.toString() + indexCell.toString()} cellValue={cell} toggleClickedCell={props.toggleClickedCell}/>
+            return <Cells key={indexFila.toString() + indexCell.toString()} index={(indexFila.toString()) + "," + (indexCell.toString())} cellValue={cell} toggleClickedCell={props.toggleClickedCell} apellido="computer" colorHit={"hitPc"} />
         })
     })
 
@@ -22,14 +22,14 @@ const PlayerBoard = (props) => {
                 <div className="title">
                     <h3>Player Board</h3>
                 </div>
-            {primerMapeo}
+            {playerBoard}
             </div>
             
             <div className="computerBoard">
                 <div className="title">
                     <h3>Computer Board</h3>
                 </div>
-            {segundoMapeo}
+            {computerBoard}
             </div>
         </div>
 
