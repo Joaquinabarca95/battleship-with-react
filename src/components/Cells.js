@@ -5,8 +5,8 @@ const Cells = (props) => {
     const [missed, setMissed] = useState(false)
     
     return (
-        <div className="cell" onClick={(e)=> props.toggleClickedCell(props.index)}>
-            {missed === true ? "X" : ""}
+        <div className="cell" value={props.index} onClick={(e)=> props.toggleClickedCell(props.index)}>
+            {missed === true ? "X" : props.index}
         </div>
     )
 }

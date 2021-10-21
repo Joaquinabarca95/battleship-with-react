@@ -47,8 +47,13 @@ const Game = () => {
         <h1>Battleship</h1>
         <div className="board">
           <PlayerBoard toggleClickedCell={toggleClickedCell} playerBoardSchema={playerBoardSchema} computerBoardSchema={computerBoardSchema}/>
+          
         </div>
       </div>
+      <div className="instructions">
+                <h4>How To Play:</h4>
+                <p>Click on the computer board and try to sink all its ships!</p>
+            </div>
     </div>
   );
 };

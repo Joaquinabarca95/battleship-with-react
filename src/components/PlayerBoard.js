@@ -16,6 +16,7 @@ const PlayerBoard = (props) => {
     })
 
     return (
+        <>
         <div className="gameBoard">
             <div className="playerBoard">
                 <div className="title">
@@ -23,6 +24,7 @@ const PlayerBoard = (props) => {
                 </div>
             {primerMapeo}
             </div>
+            
             <div className="computerBoard">
                 <div className="title">
                     <h3>Computer Board</h3>
@@ -30,6 +32,8 @@ const PlayerBoard = (props) => {
             {segundoMapeo}
             </div>
         </div>
+
+            </>
     )
 }
 
