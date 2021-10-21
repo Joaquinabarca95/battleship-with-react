@@ -3,7 +3,6 @@ import React, {useState} from 'react'
 
 const Cells = (props) => {
     const valorCelda = (props.cellValue)
-    const apellido = props.apellido
     const [missed, setMissed] = useState(false)
     const colorHit = props.colorHit
     const toggleSetMissed = () => {
@@ -27,7 +26,7 @@ const activePlayer = props.activePlayer
 
     return (
         <div className={contador===0 ? "cell " : (missed ? "cell missed" : "cell "+ colorHit)} 
-        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido,toggleSetContador, (activePlayer)=> props.toggleActivePlayer(activePlayer))}>
+        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido,toggleSetContador, props.toggleActivePlayer, activePlayer)}>
             {missed === true ? "X" : ""}
         </div>
     )

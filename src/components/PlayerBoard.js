@@ -4,26 +4,28 @@ import Cells from './Cells'
 const PlayerBoard = (props) => {
 
     const playerBoard = props.playerBoardSchema.map((array, indexFila) => {
-        return array.map((cell, indexCell, activePlayer) => {
-            return <Cells key={indexFila.toString() + indexCell.toString()} 
+        return array.map((cell, indexCell) => {
+            return <Cells 
+            key={indexFila.toString() + indexCell.toString()} 
             index={indexFila.toString() + "," + indexCell.toString()} 
-            cellValue={cell} toggleClickedCell={props.toggleClickedCell} 
+            cellValue={cell} 
+            toggleClickedCell={props.toggleClickedCell} 
             apellido="player" colorHit={"hitPlayer"} 
-            className={activePlayer === true ? "disabled" : ""} 
+
             toggleActivePlayer={props.toggleActivePlayer}
-            activePlayer={activePlayer}/>
+            activePlayer={props.activePlayer}/>
         })
     })
 
     const computerBoard = props.computerBoardSchema.map((array, indexFila) => {
-        return array.map((cell, indexCell, activePlayer) => {
+        return array.map((cell, indexCell) => {
             return <Cells key={indexFila.toString() + indexCell.toString()} 
             index={(indexFila.toString()) + "," + (indexCell.toString())} 
-            cellValue={cell} toggleClickedCell={props.toggleClickedCell} 
+            cellValue={cell} 
+            toggleClickedCell={props.toggleClickedCell} 
             apellido="computer" colorHit={"hitPc"} 
-            className={activePlayer === true ? "disabled" : ""} 
             toggleActivePlayer={props.toggleActivePlayer}
-            activePlayer={activePlayer}/>
+            activePlayer={props.activePlayer}/>
         })
     })
 
@@ -36,7 +38,7 @@ const PlayerBoard = (props) => {
                 </div>
             {playerBoard}
             </div>
-            
+
             <div className={props.activePlayer === false ? "computerBoard" : "computerBoard disabled"}>
                 <div className="title">
                     <h3>Computer Board</h3>

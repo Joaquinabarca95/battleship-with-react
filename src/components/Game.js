@@ -76,9 +76,8 @@ const Game = () => {
   };
 
 
-  const toggleActivePlayer = (activePlayer) => {
+  const toggleActivePlayer = (activePlayer) => {   
     setActivePlayer(!activePlayer)
-    console.log(activePlayer, "este juega");
   }
 
   return (
