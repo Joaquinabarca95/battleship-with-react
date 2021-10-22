@@ -7,7 +7,7 @@ const PlayerBoard = (props) => {
         return array.map((cell, indexCell) => {
             return <Cells 
             key={indexFila.toString() + indexCell.toString()} 
-            index={indexFila.toString() + "," + indexCell.toString()} 
+            index={indexFila.toString() +indexCell.toString()} 
             cellValue={cell} 
             toggleClickedCell={props.toggleClickedCell} 
             apellido="player" colorHit={"hitPlayer"} 
@@ -20,7 +20,7 @@ const PlayerBoard = (props) => {
     const computerBoard = props.computerBoardSchema.map((array, indexFila) => {
         return array.map((cell, indexCell) => {
             return <Cells key={indexFila.toString() + indexCell.toString()} 
-            index={(indexFila.toString()) + "," + (indexCell.toString())} 
+            index={(indexFila.toString()) + (indexCell.toString())} 
             cellValue={cell} 
             toggleClickedCell={props.toggleClickedCell} 
             apellido="computer" colorHit={"hitPc"} 
@@ -32,15 +32,15 @@ const PlayerBoard = (props) => {
     return (
         <>
         <div className="gameBoard">
-            <div className={props.activePlayer === true ? "playerBoard" : "playerBoard disabled"}>
-                <div className="title">
+            <div className={props.activePlayer === true ? "playerBoard" : "playerBoard "}>
+                <div className={props.activePlayer === true ? "title turn" : "title"}>
                     <h3>Player Board</h3>
                 </div>
             {playerBoard}
             </div>
 
-            <div className={props.activePlayer === false ? "computerBoard" : "computerBoard disabled"}>
-                <div className="title">
+            <div className={props.activePlayer === false ? "computerBoard" : "computerBoard "}>
+                <div className={props.activePlayer === false ? "title turn" : "title"}>
                     <h3>Computer Board</h3>
                 </div>
             {computerBoard}

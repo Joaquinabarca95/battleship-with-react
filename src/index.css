@@ -81,6 +81,7 @@ code {
   display: flex;
   width: 100%;
   justify-content: center;
+  margin: 0 3px;
 }
 
 .instructions {
@@ -95,7 +96,7 @@ code {
 }
 
 .playerBoard .hitPlayer {
-  background-color: rgb(16, 93, 141);
+  background-color: rgb(13, 54, 189);
 }
 
 .computerBoard .hitPc {
@@ -110,5 +111,12 @@ code {
 .disabled {
   pointer-events: none;
   cursor: none;
-  opacity: 0.5;
+  opacity: 0.8;
+}
+
+.turn {
+  border: 1px solid lightskyblue;
+  background-color: lightskyblue;
+  margin-bottom: 5px;
+  color: rgb(51, 68, 82);
 }

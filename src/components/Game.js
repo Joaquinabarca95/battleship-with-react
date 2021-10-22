@@ -19,7 +19,6 @@ const Game = () => {
     [1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   ];
 
-  
   let computerBoardSchema1 = [
     [0, 0, 1, 0, 0, 0, 1, 1, 1, 1],
     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -32,102 +31,118 @@ const Game = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
   ];
-  
-  const [playerBoardSchema, setPlayerBoardSchema] = useState(playerBoardSchema1)
-  const [computerBoardSchema, setComputerBoardSchema] = useState(computerBoardSchema1)
+
+  const [playerBoardSchema, setPlayerBoardSchema] =
+    useState(playerBoardSchema1);
+  const [computerBoardSchema, setComputerBoardSchema] =
+    useState(computerBoardSchema1);
   const [clickedCell, setClickedCell] = useState("");
   const [activePlayer, setActivePlayer] = useState(true); // 0 yo, 1 pc
-  const [missedPc, setMissedPc] = useState(false)
 
   const checkIfShip = (cellValue, toggleSetMissed, apellido, position) => {
-    if (cellValue === 0){
-      if (apellido === "player"){
-        playerBoardSchema1[position[0]][position[2]] = 3
+    if (cellValue === 0) {
+      if (apellido === "player") {
+        playerBoardSchema1[position[0]][position[2]] = 3;
         console.log(playerBoardSchema1);
-        setPlayerBoardSchema(playerBoardSchema1)
-      } else if (apellido === "computer"){
-        computerBoardSchema1[position[0]][position[2]] = 3
+        setPlayerBoardSchema(playerBoardSchema1);
+      } else if (apellido === "computer") {
+        computerBoardSchema1[position[0]][position[2]] = 3;
         console.log(computerBoardSchema1);
-        setComputerBoardSchema(computerBoardSchema1)
+        setComputerBoardSchema(computerBoardSchema1);
       }
       console.log("missed");
       console.log(apellido);
-      toggleSetMissed()
+      toggleSetMissed();
     } else if (cellValue === 1) {
       console.log("le ashunto en", cellValue);
       console.log(apellido);
-      if (apellido === "player"){
-        playerBoardSchema1[position[0]][position[2]] = 2
+      if (apellido === "player") {
+        playerBoardSchema1[position[0]][position[2]] = 2;
         console.log(playerBoardSchema1);
-        setPlayerBoardSchema(playerBoardSchema1)
-      } else if (apellido === "computer"){
-        computerBoardSchema1[position[0]][position[2]] = 2
+        setPlayerBoardSchema(playerBoardSchema1);
+      } else if (apellido === "computer") {
+        computerBoardSchema1[position[0]][position[2]] = 2;
         console.log(computerBoardSchema1);
-        setComputerBoardSchema(computerBoardSchema1)
+        setComputerBoardSchema(computerBoardSchema1);
       }
     }
-  } 
-
-  const toggleClickedCell = (position, cellValue, toggleSetMissed, apellido,toggleSetContador, toggleActivePlayer, activePlayer) => {
-    setClickedCell(position);
-    console.log(position, cellValue);
-    checkIfShip(cellValue, toggleSetMissed, apellido, position)
-    toggleSetContador()
-    toggleActivePlayer(activePlayer)
   };
 
-  const pcTurn = () => {
-    let randomCol = Math.floor(Math.random() * 9)
-    let randomRow = Math.floor(Math.random() * 9)
-    let position = randomRow.toString() + "," + randomCol.toString()
-    const newPlayerBoardSchema= [...playerBoardSchema]
-    let cellValue = newPlayerBoardSchema[randomRow][randomCol]
+  const toggleClickedCell = (
+    position,
+    cellValue,
+    toggleSetMissed,
+    apellido,
+    toggleSetContador,
+    toggleActivePlayer,
+    activePlayer
+  ) => {
+    setClickedCell(position);
+    console.log(position, cellValue);
+    checkIfShip(cellValue, toggleSetMissed, apellido, position);
+    toggleSetContador();
+    toggleActivePlayer(activePlayer);
+  };
 
-    if (cellValue===0){
+  const [playedCells, setPlayedCells] = useState([])
+  const [repeatedCells, setRepeatedCells] = useState([])
+
+  const pcTurn = () => {
+    let randomCol = Math.floor(Math.random() * 9);
+    let randomRow = Math.floor(Math.random() * 9);
+    let position = randomRow.toString() + randomCol.toString();
+    let newPlayerBoardSchema = [...playerBoardSchema];
+    let newPlayedCells = [...playedCells]
+    let cellValue = newPlayerBoardSchema[randomRow][randomCol];
+    // let indexCell =
+    if (newPlayerBoardSchema[randomRow][randomCol]===0){
       newPlayerBoardSchema[randomRow][randomCol]= 3
-      document.querySelectorAll("#cell")[newPlayerBoardSchema[randomRow][randomCol]].classList.add("missed")
       setPlayerBoardSchema(newPlayerBoardSchema)
     }
-    else if(cellValue===1){
+    else if(newPlayerBoardSchema[randomRow][randomCol]===1){
       newPlayerBoardSchema[randomRow][randomCol]= 2
-      document.querySelectorAll("#cell")[newPlayerBoardSchema[randomRow][randomCol]].classList.add("hitPlayer")
       setPlayerBoardSchema(newPlayerBoardSchema)
     }
-    
+
+
     console.log(playerBoardSchema)
+    console.log("hola");
+    //MODIFICAR TABLEROOOO
+  
+
+    console.log(playerBoardSchema);
     console.log(position, cellValue, "position y cellvalue PC");
     console.log("hola");
-    toggleSetContador()
-    
-    //MODIFICAR TABLEROOOO
-  }
+    toggleSetContador();
 
-  const [contador, setContador] = useState(0)
-  const toggleSetContador = ()=>{
-    setContador(contador+1)
-    console.log("Se esta ejecutando el contador correctamente")
-}
+    //MODIFICAR TABLEROOOO
+  };
+
+  const [contador, setContador] = useState(0);
+  const toggleSetContador = () => {
+    setContador(contador + 1);
+    console.log("Se esta ejecutando el contador correctamente");
+  };
 
   useEffect(() => {
-      pcTurn()
-      toggleActivePlayer(activePlayer)
+    pcTurn();
+    toggleActivePlayer(activePlayer);
+  }, [computerBoardSchema]);
 
-  }, [computerBoardSchema])
-  
-  const toggleActivePlayer = (activePlayer) => { //OK
-    setActivePlayer(!activePlayer)
+  const toggleActivePlayer = (activePlayer) => {
+    //OK
+    setActivePlayer(!activePlayer);
     console.log(activePlayer, "este juega");
-  }
- 
+  };
 
   return (
     <div>
       <div className="container">
         <h1>Battleship</h1>
         <div className="board">
-          <PlayerBoard 
-          toggleActivePlayer={toggleActivePlayer}
-          activePlayer={activePlayer}
+          <PlayerBoard
+            toggleActivePlayer={toggleActivePlayer}
+            activePlayer={activePlayer}
             toggleClickedCell={toggleClickedCell}
             playerBoardSchema={playerBoardSchema}
             computerBoardSchema={computerBoardSchema}
