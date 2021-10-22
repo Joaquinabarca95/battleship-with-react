@@ -111,7 +111,6 @@ code {
 .disabled {
   pointer-events: none;
   cursor: none;
-  opacity: 0.8;
 }
 
 .turn {
@@ -119,4 +118,9 @@ code {
   background-color: lightskyblue;
   margin-bottom: 5px;
   color: rgb(51, 68, 82);
+}
+
+.missed {
+  background-color: brown;
+  color: white;
 }

@@ -26,7 +26,7 @@ const activePlayer = props.activePlayer
 
     return (
         <div id="cell" className={contador===0 ? "cell " : (missed ? "cell missed" : "cell "+ colorHit)} 
-        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido,toggleSetContador, props.toggleActivePlayer, activePlayer)}>
+        onClick={(e)=> props.toggleClickedCell(props.index, valorCelda, toggleSetMissed, props.apellido,toggleSetContador, props.toggleActivePlayer, activePlayer, props.colorHit)}>
             {missed === true ? "X" : ""}
         </div>
     )

@@ -32,19 +32,19 @@ const PlayerBoard = (props) => {
     return (
         <>
         <div className="gameBoard">
-            <div className={props.activePlayer === true ? "playerBoard" : "playerBoard "}>
+            <div className={props.activePlayer === true ? "playerBoard" : "playerBoard disabled"}>
                 <div className={props.activePlayer === true ? "title turn" : "title"}>
                     <h3>Player Board</h3>
                 </div>
             {playerBoard}
             </div>
-
-            <div className={props.activePlayer === false ? "computerBoard" : "computerBoard "}>
+            <div className={props.activePlayer === false ? "computerBoard" : "computerBoard disabled"}>
                 <div className={props.activePlayer === false ? "title turn" : "title"}>
                     <h3>Computer Board</h3>
                 </div>
             {computerBoard}
             </div>
+
         </div>
 
             </>
